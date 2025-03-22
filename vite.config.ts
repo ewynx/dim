@@ -6,7 +6,15 @@ export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
     esbuildOptions: {
-      target: "esnext"
-    }
-  }
+      target: "esnext",
+    },
+  },
+  build: {
+    target: "esnext",
+    rollupOptions: {
+      output: {
+        assetFileNames: 'assets/[name].[hash].[ext]',
+      },
+    },
+  },
 })
