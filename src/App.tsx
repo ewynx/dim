@@ -2,8 +2,8 @@ import { useState } from "react"
 import { UltraHonkBackend } from "@aztec/bb.js"
 import { Noir } from "@noir-lang/noir_js"
 import { compile, createFileManager } from "@noir-lang/noir_wasm"
-import main from "../circuit/src/main.nr?url";
-import nargoToml from "../circuit/Nargo.toml?url";
+import main from "../public/circuit/src/main.nr?url";
+import nargoToml from "../public/circuit/Nargo.toml?url";
 import initNoirC from "@noir-lang/noirc_abi";
 import initACVM from "@noir-lang/acvm_js";
 import acvm from "@noir-lang/acvm_js/web/acvm_js_bg.wasm?url";
@@ -58,7 +58,7 @@ export default function App() {
 
             setProofOutput(JSON.stringify(proof.proof))
 
-            const res =await fetch("/api/submit-nullifier", {
+            const res = await fetch("/.netlify/functions/submit-nullifier", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               // TODO make sure this is the correct pub signal
